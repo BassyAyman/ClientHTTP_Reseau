@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClientHTTP
@@ -12,48 +14,56 @@ namespace ClientHTTP
     {
         private List<string> _urls = new List<string>();
 
+        string urlPattern = @"^https?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?$"; // pour verifier que le format et valide dans le fichier txt
+
         public void initialisationQuestion1()
         {
             _urls.Clear();
-            _urls.Add("https://www.example.com");
-            _urls.Add("https://www.gutenberg.org");
-            _urls.Add("https://www.reddit.com");
-            _urls.Add("https://www.pastebin.com");
-            _urls.Add("https://www.phoronix.com");
-            _urls.Add("http://www.tigli.fr");
-            _urls.Add("https://www.gearbest.com");
-            _urls.Add("https://www.lingoda.com");
+            try
+            {
+                string filePath1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../ListeServeurModifiable.txt");
+                using (StreamReader sr = new StreamReader(filePath1))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if(Regex.IsMatch(line, urlPattern))
+                        {
+                            _urls.Add(line);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur lors de la lecture du fichier d'URLs : " + e.Message);
+            }
         }
 
         public void initialisationQuestion2Exemple1()
         {
             _urls.Clear();
-            _urls.Add("https://fr.wikipedia.org/wiki/Histoire_de_France");
-            _urls.Add("https://fr.wikipedia.org/wiki/Albert_Einstein");
-            _urls.Add("https://fr.wikipedia.org/wiki/Londres");
-            _urls.Add("https://fr.wikipedia.org/wiki/Barack_Obama");
-            _urls.Add("https://fr.wikipedia.org/wiki/Impressionnisme");
-            _urls.Add("https://fr.wikipedia.org/wiki/Albert_Camus");
-            _urls.Add("https://fr.wikipedia.org/wiki/Zone_51");
-            _urls.Add("https://fr.wikipedia.org/wiki/Juifs");
-            _urls.Add("https://fr.wikipedia.org/wiki/Apprentissage_automatique");
-            _urls.Add("https://fr.wikipedia.org/wiki/Aviation");
+            try
+            {
+                string filePath2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../ListePageWiki.txt");
+                using (StreamReader sr = new StreamReader(filePath2))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (Regex.IsMatch(line, urlPattern))
+                        {
+                            _urls.Add(line);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur lors de la lecture du fichier d'URLs : " + e.Message);
+            }
         }
-        
-        public void initialisationQuestion2Exemple2()
-        {
-            _urls.Clear();
-            _urls.Add("https://ent.unice.fr/uPortal/tag.c843fa75d4b78bcd.render.userLayoutRootNode.uP?uP_sparam=focusedTabID&focusedTabID=115&uP_sparam=mode&mode=view");
-            /*_urls.Add("https://fr.wikipedia.org/wiki/Albert_Einstein");
-            _urls.Add("https://fr.wikipedia.org/wiki/Londres");
-            _urls.Add("https://fr.wikipedia.org/wiki/Barack_Obama");
-            _urls.Add("https://fr.wikipedia.org/wiki/Impressionnisme");
-            _urls.Add("https://fr.wikipedia.org/wiki/Albert_Camus");
-            _urls.Add("https://fr.wikipedia.org/wiki/Zone_51");
-            _urls.Add("https://fr.wikipedia.org/wiki/Juifs");
-            _urls.Add("https://fr.wikipedia.org/wiki/Apprentissage_automatique");
-            _urls.Add("https://fr.wikipedia.org/wiki/Aviation");*/
-        }
+
         public List<string> getUrls()
         {
             return _urls;

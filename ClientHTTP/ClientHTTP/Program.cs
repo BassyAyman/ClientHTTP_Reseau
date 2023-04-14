@@ -76,6 +76,7 @@ namespace ClientHTTP
                 {
                     responseString = "Page non trouvée";
                 }
+                response.AddHeader("Access-Control-Allow-Origin", "*");
 
                 // Envoi de la réponse au client
                 byte[] buffer = Encoding.UTF8.GetBytes(responseString);
@@ -85,12 +86,7 @@ namespace ClientHTTP
                 output.Close();
 
                 Console.WriteLine("Requete fini ...");
-                /*Console.WriteLine("Appuyez sur la touche 'q' pour quitter...");
-                ConsoleKeyInfo key;
-                do
-                {
-                    key = Console.ReadKey();
-                } while (key.Key != ConsoleKey.Q);*/
+               
             }             
         }       
     }
