@@ -72,6 +72,24 @@ namespace ClientHTTP
 
                     responseString = stats.getAgeStatistics();
                 }
+                else if(requestedUrl == "/question3")
+                {
+                    urls.initialisationQuestion3();
+                    RequestManager req = new RequestManager(urls);
+                    int taille3 = urls.getUrls().Count();
+
+                    for (int i = 0; i < taille3; i++)
+                    {
+                        Console.WriteLine("Requete en cours vers lui : " + urls.getUrls()[i]);
+                        Headers headers = await req.doRequestGet(i);
+                        if (headers == null) continue;
+                        stats.UpdateChoisenStatistics(headers);
+                        Console.WriteLine(" ok on est bon");
+                    }
+                    Console.WriteLine(stats.getAgeStatistics());
+
+                    responseString = stats.GetChoisedStatisticsString();
+                }
                 else
                 {
                     responseString = "Page non trouvée";

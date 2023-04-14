@@ -10,12 +10,10 @@ namespace ClientHTTP
     internal class Headers
     {
         public int Age { get; set; }
-        //public string Vary { get; set; }
-        //public string XCache { get; set; }
-        //public string CacheControl { get; set; }
-        //public string ETag { get; set; }
         public string Server { get; set; }
-
+        public string ContentType { get; set; }
+        public string ContentEncoding { get; set; }
+        public long ContentLength { get; set; }
 
         public Headers(HttpResponseMessage response)
         {
@@ -27,11 +25,11 @@ namespace ClientHTTP
                 }
             }
 
-            //Vary = response.Headers.GetValues("Vary").FirstOrDefault();
-            //XCache = response.Headers.GetValues("X-Cache").FirstOrDefault();
-            //CacheControl = response.Headers.CacheControl?.ToString();
-            //ETag = response.Headers.GetValues("ETag").FirstOrDefault();
             Server = response.Headers.Server?.ToString();
+            ContentType = response.Content.Headers.ContentType?.ToString();
+            ContentEncoding = response.Content.Headers.ContentEncoding?.ToString();
+            ContentLength = response.Content.Headers.ContentLength.GetValueOrDefault();
+            
         }
 
         public int getAgeAsHours()
@@ -39,7 +37,7 @@ namespace ClientHTTP
             return Age / 3600;
         }
 
-        public int getAgeAsSecondes()
+        public int getAgeAsSeconds()
         {
             return Age;
         }
@@ -48,5 +46,22 @@ namespace ClientHTTP
         {
             return Server;
         }
+
+        public string getContentType()
+        {
+            return ContentType;
+        }
+
+        public string getContentEncoding()
+        {
+            return ContentEncoding;
+        }
+
+        public long getContentLength()
+        {
+            return ContentLength;
+        }
+
     }
+
 }

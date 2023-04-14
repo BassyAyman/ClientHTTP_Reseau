@@ -64,6 +64,29 @@ namespace ClientHTTP
             }
         }
 
+        public void initialisationQuestion3()
+        {
+            _urls.Clear();
+            try
+            {
+                string filePath2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../ListePageWiki.txt");
+                using (StreamReader sr = new StreamReader(filePath2))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (Regex.IsMatch(line, urlPattern))
+                        {
+                            _urls.Add(line);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur lors de la lecture du fichier d'URLs : " + e.Message);
+            }
+        }
         public List<string> getUrls()
         {
             return _urls;
