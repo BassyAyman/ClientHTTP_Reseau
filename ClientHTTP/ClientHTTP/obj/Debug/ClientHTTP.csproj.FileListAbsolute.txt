@@ -1,0 +1,8 @@
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\bin\Debug\ClientHTTP.exe.config
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\bin\Debug\ClientHTTP.exe
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\bin\Debug\ClientHTTP.pdb
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\obj\Debug\ClientHTTP.csproj.AssemblyReference.cache
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\obj\Debug\ClientHTTP.csproj.SuggestedBindingRedirects.cache
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\obj\Debug\ClientHTTP.csproj.CoreCompileInputs.cache
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\obj\Debug\ClientHTTP.exe
+C:\Users\baber\Desktop\Semestre_8\ReseauMiddle\ClientHTTP\ClientHTTP\obj\Debug\ClientHTTP.pdb
